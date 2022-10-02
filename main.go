@@ -11,7 +11,7 @@ import (
 )
 
 func printUsageAndExit() {
-	fmt.Println("Usage: go flextorrent.go --file <path to torrent file>")
+	fmt.Println("Usage: flextorrent -f <path to torrent file>")
 	flag.PrintDefaults()
 	os.Exit(1)
 }
@@ -26,10 +26,10 @@ func handleInterrupt(cancel context.CancelFunc) {
 }
 
 func main() {
-	filePath := flag.String("file", "", "torrent file path")
-	fileIndicesStr := flag.String("indices", "", "file indices to download (separated with ',' or '-' for ranges, e.g. 5,6-8,10)")
-	metadataOnly := flag.Bool("metadata", false, "metadata only mode")
-	downloadDir := flag.String("dir", "", "download directory path")
+	filePath := flag.String("f", "", "torrent file path")
+	fileIndicesStr := flag.String("i", "", "indices of files to download (separated with ',' or '-' for ranges, e.g. 0,5,6-8,10)")
+	metadataOnly := flag.Bool("m", false, "print metadata in JSON format (e.g. file list) and exit")
+	downloadDir := flag.String("d", "", "download directory path")
 	flag.Parse()
 
 	if len(*filePath) == 0 {

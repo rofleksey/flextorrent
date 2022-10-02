@@ -37,9 +37,9 @@ func DownloadTorrent(ctx context.Context, filePath, downloadPath string, fileInd
 	}
 	for i := range fc.files {
 		if fileIndices.Contains(i) {
-			cFile := fc.torrent.Files()[i]
-			cFile.SetPriority(torrentLib.PiecePriorityNormal)
-			fc.downloadLength += uint(cFile.Length())
+			file := fc.torrent.Files()[i]
+			file.SetPriority(torrentLib.PiecePriorityNormal)
+			fc.downloadLength += uint(file.Length())
 			fc.selected[i] = true
 		}
 	}
